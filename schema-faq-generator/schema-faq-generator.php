@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * Plugin Name: Schema Faq Generator
@@ -10,57 +9,6 @@
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
-
-/* Виджет WPSchool Widget */
-class wpschool_example_widget extends WP_Widget {
-
-    // Установка идентификатора, заголовка, имени класса и описания для виджета.
-    public function __construct() {
-        $widget_options = array(
-            'classname' => 'wpschool_widget',
-            'description' => 'Это наш первый виджет',
-        );
-        parent::__construct( 'wpschool_widget', 'WPSchool Widget', $widget_options );
-    }
-
-    // Вывод виджета в области виджетов на сайте.
-    public function widget( $args, $instance ) {
-        $title = apply_filters( 'widget_title', $instance[ 'title' ] );
-        $blog_title = get_bloginfo( 'name' );
-        $tagline = get_bloginfo( 'description' );
-
-        echo $args['before_widget'] . $args['before_title'] . $title . $args['after_title']; ?>
-        <p><strong>Site Name:</strong> <?php echo $blog_title ?></p>
-        <p><strong>Tagline:</strong> <?php echo $tagline ?></p>
-        <?php echo $args['after_widget'];
-    }
-
-    // Параметры виджета, отображаемые в области администрирования WordPress.
-    public function form( $instance ) {
-        $title = ! empty( $instance['title'] ) ? $instance['title'] : ''; ?>
-        <p>
-        <label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:</label>
-        <input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>" />
-        </p><?php
-    }
-
-    // Обновление настроек виджета в админ-панели.
-    public function update( $new_instance, $old_instance ) {
-        $instance = $old_instance;
-        $instance[ 'title' ] = strip_tags( $new_instance[ 'title' ] );
-        return $instance;
-    }
-
-}
-
-// Регистрация и активация виджета.
-function wpschool_register_widget() {
-    register_widget( 'wpschool_example_widget' );
-}
-add_action( 'widgets_init', 'wpschool_register_widget' );
-
-
-
 
 class Schema_FAQ_Gen_Widget extends WP_Widget {
     // Установка идентификатора, заголовка, имени класса и описания для виджета.
@@ -92,10 +40,7 @@ class Schema_FAQ_Gen_Widget extends WP_Widget {
 
     // Вывод виджета в области виджетов на сайте.
     public function widget( $args, $instance ) {
-
         $title = apply_filters( 'sfg_widget_title', $instance['title'] );
-//         $title = ! empty( $instance['title'] ) ? $instance['title'] : '';
-         //$title = 'Schema FAQ Generator';
 
          echo PHP_EOL;
          echo $args['before_widget'];
@@ -109,9 +54,16 @@ class Schema_FAQ_Gen_Widget extends WP_Widget {
     }
 }
 
-
 // Регистрация и активация виджета.
-function schema_faq_gen_register_widget() {
+function register_sfg_widget() {
     register_widget( 'Schema_FAQ_Gen_Widget' );
 }
-add_action( 'widgets_init', 'schema_faq_gen_register_widget' );
+add_action( 'widgets_init', 'register_sfg_widget' );
+
+// Регистрация и подключение скриптов и стилей
+function register_sfg_scripts() {
+    wp_enqueue_style( 'sfg-style-css', plugin_dir_url( __FILE__ ) . 'css/sfg-style.css' );
+    wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'sfg-script-js', plugin_dir_url( __FILE__ ) . 'js/sfg-script.js', array( 'jquery' ), '1.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'register_sfg_scripts' );
