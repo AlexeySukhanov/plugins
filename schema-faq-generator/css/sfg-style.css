@@ -1,3 +1,11 @@
-* {
-    color: green !important;
+.sfg_container input, .sfg_container textarea {
+    width: 100%;
+}
+
+.sfg_faq_list{
+    padding-left: 0;
+}
+.sfg_item {
+    list-style: none;
+    display: flex;
 }

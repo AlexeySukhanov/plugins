@@ -42,15 +42,10 @@ class Schema_FAQ_Gen_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
         $title = apply_filters( 'sfg_widget_title', $instance['title'] );
 
-         echo PHP_EOL;
-         echo $args['before_widget'];
-            echo PHP_EOL;
-                echo $args['before_title'] . $title . $args['after_title'];
-             echo PHP_EOL;
-                echo 'content';
-             echo PHP_EOL;
-         echo $args['after_widget'];
-         echo PHP_EOL;
+        echo PHP_EOL . $args['before_widget'] . PHP_EOL;
+        echo $args['before_title'] . $title . $args['after_title'] . PHP_EOL;
+        require_once('tmpl.html');
+        echo PHP_EOL . $args['after_widget'] . PHP_EOL;
     }
 }
 
@@ -65,5 +60,10 @@ function register_sfg_scripts() {
     wp_enqueue_style( 'sfg-style-css', plugin_dir_url( __FILE__ ) . 'css/sfg-style.css' );
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'sfg-script-js', plugin_dir_url( __FILE__ ) . 'js/sfg-script.js', array( 'jquery' ), '1.0', true );
+
+    // react
+    wp_enqueue_script( 'react-development-js', 'https://unpkg.com/react@16/umd/react.development.js');
+    wp_enqueue_script( 'react-dom-development-js', 'https://unpkg.com/react-dom@16/umd/react-dom.development.js', array( 'react-development-js' ));
+    wp_enqueue_script( 'babel-min-js', 'https://unpkg.com/babel-standalone@6.15.0/babel.min.js' );
 }
 add_action( 'wp_enqueue_scripts', 'register_sfg_scripts' );
