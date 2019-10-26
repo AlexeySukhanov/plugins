@@ -1,11 +1,32 @@
-.sfg_container input, .sfg_container textarea {
-    width: 100%;
+#colophon .widget-column .widget {
+    margin-right: 0 !important;
+    width: 100% !important;
 }
 
 .sfg_faq_list{
     padding-left: 0;
 }
-.sfg_item {
+
+.sfg_item{
     list-style: none;
     display: flex;
+    margin-bottom: 20px;
 }
+
+.sfg_draggable{
+    background-color: palevioletred;
+}
+
+.sfg_item_content{
+    width: 100%;
+}
+
+.sfg_container input, .sfg_container textarea {
+    width: 100%;
+}
+
+#sfg_output {
+    height: 2000px;
+    font-size: 12px;
+}
+
