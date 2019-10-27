@@ -59,6 +59,7 @@ add_action( 'widgets_init', 'register_sfg_widget' );
 function register_sfg_scripts() {
     wp_enqueue_style( 'sfg-style-css', plugin_dir_url( __FILE__ ) . 'css/sfg-style.css' );
     wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'jquery-ui-min-js', 'https://code.jquery.com/ui/1.12.0/jquery-ui.min.js', array( 'jquery' )  );
     wp_enqueue_script( 'sfg-script-js', plugin_dir_url( __FILE__ ) . 'js/sfg-script.js', array( 'jquery' ), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'register_sfg_scripts' );

@@ -1,4 +1,5 @@
 jQuery( document ).ready( function(){
+    jQuery('.sfg_faq_list').sortable();
 
     function schemaGenerate() {
         // prepare start end etc..
@@ -64,27 +65,46 @@ jQuery( document ).ready( function(){
         });
     }
 
+    // function copySchema() {
+    //
+    // }
 
-    // init generator
+
+
+
+    // init generate
         schemaGenerate();
 
-    // on-input generator
+    // on-input regenerate
     jQuery(document).on( 'input', '.sfg_input', function () {
         schemaGenerate();
     });
 
-    // add-item generator
+    // add-item regenerate
     jQuery('#sfg_add_new').on( 'click', function() {
         addItem();
         schemaGenerate();
     });
 
-    // remove-item generator
+    // remove-item regenerate
     jQuery('.sfg_delete_item').each( function () {
         jQuery(this).on( 'click', function () {
             jQuery(this).parent().remove();
             schemaGenerate();
         } );
+    });
+
+    // sort-items regenerate
+    jQuery( '.sfg_faq_list' ).on( 'sortbeforestop', function() {
+        schemaGenerate();
+    });
+
+    // copy schema
+    jQuery('#sfg_copy').on( 'click', function () {
+        let sourceElement = document.getElementById('sfg_output');
+        sourceElement.select();
+        sourceElement.setSelectionRange(0, 99999);
+        document.execCommand("copy");
     });
 
 });
