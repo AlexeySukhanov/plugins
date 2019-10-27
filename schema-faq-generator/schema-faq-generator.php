@@ -11,7 +11,8 @@
 */
 
 class Schema_FAQ_Gen_Widget extends WP_Widget {
-    // Установка идентификатора, заголовка, имени класса и описания для виджета.
+
+    // Set identifier, title, class name and description for the widget
     public function __construct(){
         $widget_options = array(
             'classname' => 'schema_faq_gen',
@@ -20,7 +21,7 @@ class Schema_FAQ_Gen_Widget extends WP_Widget {
         parent::__construct( 'schema_faq_gen', 'Schema FAQ Generator', $widget_options );
     }
 
-    // Параметры виджета, отображаемые в области администрирования WordPress.
+    // Widget options displayed in the WordPress admin area
     public function form( $instance ) {
         $title = ! empty( $instance['title']) ? $instance['title'] : '' ;
         ?>
@@ -31,14 +32,14 @@ class Schema_FAQ_Gen_Widget extends WP_Widget {
         <?php
     }
 
-    // Обновление настроек виджета в админ-панели.
+    // Update widget settings in the admin panel
     public function update( $new_instance, $old_instance ) {
         $instance = $old_instance;
         $instance['title'] = strip_tags( $new_instance['title'] );
         return $instance;
     }
 
-    // Вывод виджета в области виджетов на сайте.
+    // Display widget in frontend widget area
     public function widget( $args, $instance ) {
         $title = apply_filters( 'sfg_widget_title', $instance['title'] );
 
@@ -49,13 +50,13 @@ class Schema_FAQ_Gen_Widget extends WP_Widget {
     }
 }
 
-// Регистрация и активация виджета.
+// Register and activate the widget
 function register_sfg_widget() {
     register_widget( 'Schema_FAQ_Gen_Widget' );
 }
 add_action( 'widgets_init', 'register_sfg_widget' );
 
-// Регистрация и подключение скриптов и стилей
+// Register and connect scripts and styles
 function register_sfg_scripts() {
     wp_enqueue_style( 'sfg-style-css', plugin_dir_url( __FILE__ ) . 'css/sfg-style.css' );
     wp_enqueue_script( 'jquery' );

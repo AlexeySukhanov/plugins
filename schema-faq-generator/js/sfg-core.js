@@ -1,7 +1,4 @@
 jQuery( document ).ready( function(){
-    jQuery('.sfg_faq_list').sortable();
-
-    autosize(document.querySelectorAll('.sfg_item_content textarea'));
 
     function convertNewLinesToBr(result) {
         result = result.replace(/(?:\n)/g, '\\n');
@@ -56,6 +53,9 @@ jQuery( document ).ready( function(){
             } );
         });
     }
+
+    jQuery('.sfg_faq_list').sortable();
+    autosize(document.querySelectorAll('.sfg_item_content textarea'));
 
     // init generate
         schemaGenerate();
