@@ -1,6 +1,6 @@
 jQuery( document ).ready( function(){
 
-    function createSchema() {
+    function schemaGenerate() {
         // prepare start end etc..
         let items = [];
         let start =
@@ -40,10 +40,9 @@ jQuery( document ).ready( function(){
 
         sfg_output.innerHTML = result;
         console.log( items.valueOf() );
-
     }
 
-    function addNewItem() {
+    function addItem() {
         let newItem = `
              <li class="sfg_item">
                 <div class="sfg_draggable">draggable</div>
@@ -55,30 +54,40 @@ jQuery( document ).ready( function(){
              </li>
         `;
         jQuery('.sfg_faq_list').append( newItem );
-        console.log('element created');
+
+        jQuery('.sfg_delete_item').each( function () {
+            jQuery(this).on( 'click', function () {
+                jQuery(this).parent().remove();
+                console.log('button deleted');
+                schemaGenerate();
+            } );
+        });
     }
-    jQuery('#sfg_add_new').on( 'click', function() {
-        addNewItem();
-        createSchema();
-    });
 
 
+    // init generator
+        schemaGenerate();
 
-    // init generate
-        createSchema();
-    // on input generate
+    // on-input generator
     jQuery(document).on( 'input', '.sfg_input', function () {
-        createSchema();
+        schemaGenerate();
     });
 
+    // add-item generator
+    jQuery('#sfg_add_new').on( 'click', function() {
+        addItem();
+        schemaGenerate();
+    });
+
+    // remove-item generator
+    jQuery('.sfg_delete_item').each( function () {
+        jQuery(this).on( 'click', function () {
+            jQuery(this).parent().remove();
+            schemaGenerate();
+        } );
+    });
 
 });
 
-
-// sfg_input.oninput = function() {
-//     sfg_output.innerHTML = sfg_input.value;
-//     let text = sfg_input.value
-//     console.log(text);
-// };
 
 
