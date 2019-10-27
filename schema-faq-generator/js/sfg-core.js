@@ -37,8 +37,8 @@ jQuery( document ).ready( function(){
              <li class="sfg_item">
                 <div class="sfg_draggable">draggable</div>
                 <div class="sfg_item_content">
-                    <input placeholder="question" type="text" class="sfg_input sfg_name_input">
-                    <textarea placeholder="answer" class="sfg_input sfg_text_input"></textarea>
+                    <textarea placeholder="question" class="sfg_input sfg_name_input" contenteditable="true"></textarea>
+                    <textarea placeholder="answer" class="sfg_input sfg_text_input"contenteditable></textarea>
                 </div>
                 <button class="sfg_delete_item" type="button">delete item</button>
              </li>
@@ -48,7 +48,6 @@ jQuery( document ).ready( function(){
         jQuery('.sfg_delete_item').each( function () {
             jQuery(this).on( 'click', function () {
                 jQuery(this).parent().remove();
-                console.log('button deleted');
                 schemaGenerate();
             } );
         });
@@ -68,6 +67,7 @@ jQuery( document ).ready( function(){
     // add-item regenerate
     jQuery('#sfg_add_new').on( 'click', function() {
         addItem();
+        autosize(document.querySelectorAll('.sfg_item_content textarea'));
         schemaGenerate();
     });
 
