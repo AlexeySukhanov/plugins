@@ -61,6 +61,6 @@ function register_sfg_scripts() {
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery-ui-min-js', plugin_dir_url( __FILE__ ) . 'vendors/jquery-ui.min.js', array( 'jquery' )  );
     wp_enqueue_script( 'autosize-min-js', plugin_dir_url( __FILE__ ) . 'vendors/autosize.min.js', array( 'jquery' )  );
-    wp_enqueue_script( 'sfg-script-js', plugin_dir_url( __FILE__ ) . 'js/sfg-script.js', array( 'jquery' ), '1.0', true );
+    wp_enqueue_script( 'sfg-core-js', plugin_dir_url( __FILE__ ) . 'js/sfg-core.js', array( 'jquery' ), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'register_sfg_scripts' );
