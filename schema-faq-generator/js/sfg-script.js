@@ -1,23 +1,23 @@
 jQuery( document ).ready( function(){
     jQuery('.sfg_faq_list').sortable();
 
+    function convertNewLinesToBr(result) {
+        result = result.replace(/(?:\n)/g, '\\n');
+        return result;
+    }
+
     function schemaGenerate() {
-        // prepare start end etc..
+        // prepare start, end etc..
         let items = [];
         let start =
-            `<script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [`;
-        let end =`\t\t]\n}\n</script>`;
+            `<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [`;
+        let end =`]}</script>`;
         let result = '';
 
         // add name
         jQuery('.sfg_name_input').each( function(index, element){
             items[index] = { name: jQuery(element).val() } ;
         });
-
         // add text
         jQuery('.sfg_text_input').each( function(index, element){
             items[index].text =  jQuery(element).val() ;
@@ -25,22 +25,12 @@ jQuery( document ).ready( function(){
 
         // generate items list
         for ( let i = 0; i < items.length; i++ ) {
-            let coma = i == items.length - 1 ? '\n' : ',';
+            let coma = i == items.length - 1 ? '' : ',';
             console.log(i);
-            result += `
-                            {
-                                "@type": "Question",
-                                "name": "` + items[i].name + `",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "` + items[i].text + `"
-                                }
-                            }` + coma;
+            result += `{"@type": "Question","name": "` + items[i].name + `","acceptedAnswer": {"@type": "Answer","text": "` + items[i].text + `"}}` + coma;
         }
         result = start + result + end;
-
-        sfg_output.innerHTML = result;
-        console.log( items.valueOf() );
+        sfg_output.innerHTML = convertNewLinesToBr(result);
     }
 
     function addItem() {
@@ -64,13 +54,6 @@ jQuery( document ).ready( function(){
             } );
         });
     }
-
-    // function copySchema() {
-    //
-    // }
-
-
-
 
     // init generate
         schemaGenerate();
@@ -106,7 +89,6 @@ jQuery( document ).ready( function(){
         sourceElement.setSelectionRange(0, 99999);
         document.execCommand("copy");
     });
-
 });
 
 

@@ -5,8 +5,8 @@
             <li class="sfg_item">
                 <div class="sfg_draggable">draggable</div>
                 <div class="sfg_item_content">
-                    <input placeholder="question" type="text" class="sfg_input sfg_name_input">
-                    <textarea placeholder="answer" class="sfg_input sfg_text_input"></textarea>
+                    <textarea placeholder="question" class="sfg_input sfg_name_input" contenteditable="true"></textarea>
+                    <textarea placeholder="answer" class="sfg_input sfg_text_input"contenteditable></textarea>
                 </div>
                 <button class="sfg_delete_item" type="button">delete item</button>
             </li>
@@ -15,7 +15,7 @@
     </div>
     <div id="sfg_output_container">
         <h3 class="sfg_title">JSON FAQ Schema Code</h3>
-        <textarea id="sfg_output" name=""  cols="30" rows="10" readonly ></textarea>
+        <textarea id="sfg_output" name="sfg_output" onresize="false" cols="30" rows="10" readonly ></textarea>
         <button id="sfg_copy" type="button">Copy FAQ Schema</button>
     </div>
 </div>
