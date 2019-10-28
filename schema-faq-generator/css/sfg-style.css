@@ -1,3 +1,169 @@
+/* start actual */
+.sfg_container h3.sfg_title{
+    margin-bottom: .6rem;
+}
+
+#sfg_input_container {
+    margin-bottom: 20px;
+}
+
+.sfg_container .sfg_faq_list {
+    padding-left: 0;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+.sfg_item{
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 0.625rem;
+    background: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    cursor: grab;
+}
+
+.sfg_draggable {
+    display: flex;
+    align-items: center;
+    padding: 0 .3125rem;;
+    cursor: grab;
+}
+
+.sfg_draggable svg{
+    width: 1.5rem;
+    height: 1.5rem;
+    -webkit-transition: fill .6s;
+    transition: fill .6s;
+    fill: #ddd;
+}
+
+.ui-sortable-helper .sfg_draggable svg{
+    fill: #1890ff;
+}
+
+.sfg_item_content {
+    width: 100%;
+    padding: 1.25rem 0;
+}
+
+.sfg_item_content textarea, #sfg_output  {
+    width: 100%;
+    resize: none;
+    background-color: #fff;
+    padding: 4px 11px;
+    font-size: 14px;
+    color: rgba(0,0,0,.65);
+    border-radius: 4px;
+    transition: all .3s,height 0s;
+}
+
+.sfg_item_content textarea:focus, #sfg_output:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(24,144,255,.2);
+    border-color: #40a9ff;
+    border-right-width: 1px!important;
+}
+
+#sfg_output{
+    margin-bottom: 10px;
+}
+
+.sfg_name_input {
+    height: 32px;
+    min-height: 32px;
+    max-height: 73px;
+    margin-bottom: 10px;
+    overflow-y: hidden;
+}
+
+.sfg_text_input {
+    height: 52px;
+    min-height: 52px;
+    max-height: 136px;
+    overflow-y: hidden;
+}
+
+.sfg_name_input::placeholder, .sfg_text_input::placeholder  {
+    color: #aaa;
+}
+
+.sfg_item .sfg_delete_item {
+    padding-right: 0.5625rem;
+    padding-left: 0.5rem;
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+.sfg_item .sfg_delete_item:hover {
+    background-color: transparent;
+}
+
+.sfg_delete_item svg {
+    width: 1.0625rem;
+    height: 1.0625rem;
+    fill: #ddd;;
+    transition: .2s;
+}
+
+.sfg_delete_item:hover svg {
+    fill: #1890FF;
+}
+
+#sfg_add_new {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    white-space: nowrap;
+    height: 32px;
+    padding: 0 15px;
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    color: rgba(0,0,0,.65);
+    box-shadow: 0 2px 0 rgba(0,0,0,.015);
+    border-radius: 4px;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+}
+
+#sfg_add_new:hover {
+    color: #40a9ff;
+    background-color: #fff;
+    border-color: #40a9ff;
+}
+
+#sfg_add_new:focus {
+    outline: none;
+    color: rgba(0,0,0,.65);
+    box-shadow: 0 2px 0 rgba(0,0,0,.015);
+    cursor: pointer;
+}
+
+#sfg_add_new svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.25rem;
+    fill: currentColor;
+}
+
+#sfg_copy {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    white-space: nowrap;
+    height: 32px;
+    padding: 0 15px;
+    font-size: 14px;
+    line-height: 1.4;
+    border-radius: 4px;
+}
+
+
+/* end actual */
+
+
+/*
 #colophon .widget-column .widget {
     margin-right: 0 !important;
     width: 100% !important;
@@ -7,19 +173,7 @@
     padding-left: 0;
 }
 
-.sfg_item{
-    list-style: none;
-    display: flex;
-    margin-bottom: 20px;
-}
 
-.sfg_draggable{
-    background-color: palevioletred;
-}
-
-.sfg_item_content{
-    width: 100%;
-}
 
 .sfg_container input, .sfg_container textarea {
     width: 100%;
@@ -29,3 +183,4 @@
     font-size: 12px;
 }
 
+*/
