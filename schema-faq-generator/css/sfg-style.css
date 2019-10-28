@@ -1,4 +1,3 @@
-/* start actual */
 .sfg_container h3.sfg_title{
     margin-bottom: .6rem;
 }
@@ -158,29 +157,3 @@
     line-height: 1.4;
     border-radius: 4px;
 }
-
-
-/* end actual */
-
-
-/*
-#colophon .widget-column .widget {
-    margin-right: 0 !important;
-    width: 100% !important;
-}
-
-.sfg_faq_list{
-    padding-left: 0;
-}
-
-
-
-.sfg_container input, .sfg_container textarea {
-    width: 100%;
-}
-
-#sfg_output {
-    font-size: 12px;
-}
-
-*/
