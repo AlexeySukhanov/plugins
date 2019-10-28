@@ -51,6 +51,7 @@ jQuery( document ).ready( function(){
         jQuery('.sfg_delete_item').each( function () {
             jQuery(this).on( 'click', function () {
                 jQuery(this).parent().remove();
+                changePlaceholders();
                 schemaGenerate();
             } );
         });
