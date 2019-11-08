@@ -146,6 +146,49 @@
     fill: currentColor;
 }
 
+
+.sfg_select input[name="sfg_view"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin-right: 0;
+    position: absolute;
+}
+.sfg_select label {
+    cursor: pointer;
+}
+
+label[for="script_view"]{
+    background-color: red;
+}
+
+#script_view:checked ~ label[for="script_view"]{
+    background-color: red !important;
+}
+#script_view:checked ~ label[for="wp_view"]{
+    background-color: transparent !important;
+}
+
+#wp_view:checked ~ label[for="wp_view"]{
+    background-color: red !important;
+}
+#wp_view:checked ~ label[for="script_view"]{
+    background-color: transparent !important;
+}
+
+.sfg_select > * {
+    display: inline-block;
+}
+
+
+.prefix_settings {
+    display: none;
+}
+
+#wp_view:checked ~ .prefix_settings{
+    display: flex;
+}
+
 #sfg_copy {
     display: flex;
     justify-content: center;

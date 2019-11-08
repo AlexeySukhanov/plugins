@@ -1,6 +1,6 @@
 <div class="sfg_container">
     <div id="sfg_input_container">
-        <h3 class="sfg_title">FAQs</h3>
+        <h3 class="sfg_title">Enter your question(s) here...</h3>
         <ul class="sfg_faq_list">
             <li class="sfg_item">
                 <div class="sfg_draggable">
@@ -17,11 +17,24 @@
         </ul>
         <button id="sfg_add_new" type="button">
             <svg viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"></path></svg>
-            Add FAQ item</button>
+            Add another question</button>
     </div>
     <div id="sfg_output_container">
-        <h3 class="sfg_title">JSON FAQ Schema Code</h3>
+        <h3 class="sfg_title">Then find your code here...</h3>
+        <div class="sfg_select">
+            <input id="script_view" name="sfg_view" type="radio" checked="checked" value="script_view">
+            <input id="wp_view" name="sfg_view" type="radio" value="wp_view">
+            <label for="script_view">Script</label>
+            or
+            <label for="wp_view">Wordpress</label>
+            <div class="prefix_settings">
+                <label><input id="post_type" type="radio" name="content_type" checked="checked" value="post_type">Post</label>
+                <label><input id="page_type" type="radio" name="content_type" value="page_type">Page</label>
+                <input id="data_id" type="number" placeholder="Enter ID" min="1">
+            </div>
+        </div>
+
         <textarea id="sfg_output" name="sfg_output" onresize="false" cols="30" rows="10" readonly ></textarea>
-        <button id="sfg_copy" type="button">Copy FAQ Schema</button>
+        <button id="sfg_copy" type="button">Click To Copy Your Code</button>
     </div>
 </div>

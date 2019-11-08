@@ -3,7 +3,7 @@
  *
  * Plugin Name: Schema Faq Generator
  * Description: Creates a widget containing a generator that allows you to create structured data for FAQ pages in Schema format.
- * Version: 1.0
+ * Version: 2.3
  * Author: Alexey Sukhanov
  * Author URI: https://www.upwork.com/fl/sukhanov
  * License: GPL2
@@ -42,7 +42,6 @@ class Schema_FAQ_Gen_Widget extends WP_Widget {
     // Display widget in frontend widget area
     public function widget( $args, $instance ) {
         $title = apply_filters( 'sfg_widget_title', $instance['title'] );
-
         echo PHP_EOL . $args['before_widget'] . PHP_EOL;
         echo $args['before_title'] . $title . $args['after_title'] . PHP_EOL;
         require_once('tmpl.html');
