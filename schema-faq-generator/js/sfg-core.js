@@ -157,6 +157,11 @@ jQuery( document ).ready( function(){
     jQuery('.sfg_select input[type=number]').on('change', function(){
         schemaGenerate();
     });
+
+    jQuery('.prefix_settings input[type=radio]').on('change', function(){
+        jQuery('.prefix_settings .point').removeClass('checked');
+        jQuery( '.prefix_settings input[type=radio]:checked' ).next().children().addClass('checked');
+    });
 });
 
 

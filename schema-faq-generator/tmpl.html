@@ -25,11 +25,13 @@
             <input id="script_view" name="sfg_view" type="radio" checked="checked" value="script_view">
             <input id="wp_view" name="sfg_view" type="radio" value="wp_view">
             <label for="script_view">Script</label>
-            or
+            <span class="divider">or</span>
             <label for="wp_view">Wordpress</label>
             <div class="prefix_settings">
-                <label><input id="post_type" type="radio" name="content_type" checked="checked" value="post_type">Post</label>
-                <label><input id="page_type" type="radio" name="content_type" value="page_type">Page</label>
+                <input id="post_type" type="radio" name="content_type" checked="checked" value="post_type">
+                <label for="post_type"><div class="point checked"></div>Post</label>
+                <input id="page_type" type="radio" name="content_type" value="page_type">
+                <label for="page_type"><div class="point"></div>Page </label>
                 <input id="data_id" type="number" placeholder="Enter ID" min="1">
             </div>
         </div>
