@@ -263,8 +263,8 @@ label[for="script_view"]{
 #wp_view:checked ~ .prefix_settings{
     display: flex;
     align-items: center;
-    margin-top: 6px;
-    margin-bottom: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 #sfg_copy {
