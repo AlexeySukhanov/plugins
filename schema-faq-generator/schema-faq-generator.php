@@ -55,6 +55,13 @@ function register_sfg_widget() {
 }
 add_action( 'widgets_init', 'register_sfg_widget' );
 
+//add shortcode
+function add_sfg_shortcode( $atts ){
+    $tmpl = file_get_contents(plugin_dir_url( __FILE__ ) . 'tmpl.html');
+    return $tmpl;
+}
+add_shortcode( 'sfg', 'add_sfg_shortcode' );
+
 // Register and connect scripts and styles
 function register_sfg_scripts() {
     wp_enqueue_style( 'sfg-style-css', plugin_dir_url( __FILE__ ) . 'css/sfg-style.css' );

@@ -94,6 +94,8 @@
     padding-left: 0.5rem;
     background-color: transparent;
     margin-bottom: 0;
+    border: none;
+    cursor: pointer;
 }
 
 .sfg_item .sfg_delete_item:hover {
@@ -277,4 +279,14 @@ label[for="script_view"]{
     font-size: 14px;
     line-height: 1.4;
     border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background 150ms ease-in-out;
+    background: #032895;
+    color: #fff;
+    font-weight: bold;
+}
+
+#sfg_copy:hover {
+    background: #111;
 }
