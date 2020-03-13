@@ -18,7 +18,7 @@
  * Text Domain:       yht-reviews
  * Domain Path:       /languages
  */
-
+test
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
