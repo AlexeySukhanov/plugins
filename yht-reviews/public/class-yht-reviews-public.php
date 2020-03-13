@@ -56,9 +56,11 @@ class Yht_Reviews_Public {
         add_action( 'wp_ajax_render_yht_reviews_view', array( $this, 'render_yht_reviews_view' ) );
         // We allow non-logged in users to access our pagination
         add_action( 'wp_ajax_nopriv_render_yht_reviews_view', array( $this, 'render_yht_reviews_view' ) );
-
         // Creates shortcode for default YHT Reviews widget output
         add_shortcode( 'yht_reviews', array( $this, 'render_yht_default_shortcode' ) );
+
+        // Creates shortcode for ribbon YHT Reviews widget output
+        add_shortcode( 'yht_reviews_ribbon', array( $this, 'render_yht_ribbon_shortcode' ) );
 	}
 
     /**
@@ -214,6 +216,125 @@ class Yht_Reviews_Public {
         exit();
 
     }
+
+
+    /**
+     * Render YHT Reviews ribbon short-code
+     *
+     * @since    1.0.0
+     */
+    public function render_yht_ribbon_shortcode() {
+        $site_url = get_site_url();
+
+        $html = "
+                <h1>Ribbon Widget Here!</h1>
+            ";
+
+        
+
+        return $html;
+    }
+
+    /**
+     * Render YHT Reviews ribbon view
+     *
+     * @since    1.0.0
+     */
+    public function render_yht_reviews_ribbon_view() {
+
+        global $wpdb;
+
+        if(isset($_POST['page'])) :
+
+            // Sanitize the received page
+            $page = sanitize_text_field($_POST['page']);
+            $cur_page = $page;
+            $page -= 1;
+
+            // Set the number of results to display
+            $per_page = 1;
+            $previous_btn = true;
+            $next_btn = true;
+            $first_btn = true;
+            $last_btn = true;
+            $start = $page * $per_page;
+
+            $reviews_query = new WP_Query(
+                array(
+                    'post_type'         => 'yht-reviews',
+                    'post_status '      => 'publish',
+                    'orderby'           => 'post_date',
+                    'order'             => 'DESC',
+                    'posts_per_page'    => $per_page,
+                    'offset'            => $start
+                )
+            );
+
+            $count_query = new WP_Query(
+                array(
+                    'post_type'         => 'yht-reviews',
+                    'post_status '      => 'publish',
+                    'posts_per_page'    => -1
+                )
+            );
+
+            // Draft variables
+            $ratings_number = 0;
+            $overall_rating = 0;
+            $five_four_rating = 0;
+            $five_stars = $four_stars = $three_stars = $two_stars = $one_star = 0;
+
+            // Variables calculations
+            if ( $count_query->have_posts() ) {
+                while ( $count_query->have_posts() ) {
+                    $count_query->the_post();
+                    $yht_rating = get_post_meta( get_the_ID(), 'yht_rating', true );
+                    if ( $yht_rating ) {
+                        $ratings_number++;
+                        $overall_rating += $yht_rating;
+                        switch ( $yht_rating ):
+                            case 5: $five_stars++;
+                                break;
+                            case 4: $four_stars++;
+                                break;
+                            case 3: $three_stars++;
+                                break;
+                            case 2: $two_stars++;
+                                break;
+                            case 1: $one_star++;
+                        endswitch;
+                    }
+                }
+            }
+
+            // Variables:
+
+            $overall_rating = preg_replace('/\.\d{1}\K.+/', '', $overall_rating / $ratings_number);
+            $overall_rating_ceil = ceil( $overall_rating );
+            $five_four_rating =  floor ( 100 / $ratings_number * ($five_stars + $four_stars ) ) ;
+            $five_stars_perc = 100 / $ratings_number * $five_stars;
+            $four_stars_perc = 100 / $ratings_number * $four_stars;
+            $three_stars_perc = 100 / $ratings_number * $three_stars;
+            $two_stars_perc = 100 / $ratings_number * $two_stars;
+            $one_star_perc = 100 / $ratings_number * $one_star;
+
+            // Settings:
+            $yht_settings = get_option( 'yht_reviews_options' );
+            extract( $yht_settings );
+
+            if ( !stristr( $yht_leave_review_url, 'http' ) && $yht_leave_review_url ) $yht_leave_review_url = 'http://' . $yht_leave_review_url;
+            $yht_leave_review_url = $yht_leave_review_url ? $yht_leave_review_url : '#';
+
+            // Include .yht-reviews-container template
+            require_once plugin_dir_path(__DIR__ ) .  'public/partials/yht-reviews-container.php';
+
+        endif;
+
+        exit();
+
+    }
+
+
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
