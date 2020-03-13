@@ -1,5 +1,4 @@
 <?php
-
 /**
  * YHT Reviews plugin
  *
