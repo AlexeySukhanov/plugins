@@ -1,0 +1,60 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.yht-wrapper-top {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.yht-name-date {
+    padding-right: 40px;
+}
+
+.yht-name-date strong{
+    display: inline-block;
+    width: 50px;
+}
+
+.yht-name-date input{
+    width: 200px;
+    height: 30px;
+    margin-bottom: 8px;
+}
+
+.yht-rating {
+    margin-top: 4px;
+}
+
+.yht-rating strong {
+    padding-left: 11px;
+}
+.yht-rating table {
+    margin-top: 6px;
+}
+.yht-rating td {
+    text-align: center;
+    font-weight: bold;
+    padding: 0 10px;
+}
+.yht-rating td input{
+    margin-right: 0;
+}
+
+.yht-testimonial {}
+.yht-testimonial textarea {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.yht-testimonial .wp-editor-tools {
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+}
+
+.yht-testimonial #wp-yht_testimonial-wrap {
+    margin-top: -16px;
+}
