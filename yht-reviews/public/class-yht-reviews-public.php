@@ -22,35 +22,35 @@
  */
 class Yht_Reviews_Public {
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
-	private $plugin_name;
+    /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $plugin_name    The ID of this plugin.
+     */
+    private $plugin_name;
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $version;
+    /**
+     * The version of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $version    The current version of this plugin.
+     */
+    private $version;
 
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
-	 */
-	public function __construct( $plugin_name, $version ) {
+    /**
+     * Initialize the class and set its properties.
+     *
+     * @since    1.0.0
+     * @param      string    $plugin_name       The name of the plugin.
+     * @param      string    $version    The version of this plugin.
+     */
+    public function __construct( $plugin_name, $version ) {
 
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+        $this->plugin_name = $plugin_name;
+        $this->version = $version;
 
         // Receive the Request post that came from AJAX
         add_action( 'wp_ajax_render_yht_reviews_view', array( $this, 'render_yht_reviews_view' ) );
@@ -61,15 +61,15 @@ class Yht_Reviews_Public {
 
         // Creates shortcode for ribbon YHT Reviews widget output
         add_shortcode( 'yht_reviews_ribbon', array( $this, 'render_yht_ribbon_shortcode' ) );
-	}
+    }
 
     /**
      * Render YHT Reviews default short-code
      *
      * @since    1.0.0
      */
-	public function render_yht_default_shortcode() {
-	    $site_url = get_site_url();
+    public function render_yht_default_shortcode() {
+        $site_url = get_site_url();
 
         $html = "
             <script>
@@ -152,7 +152,7 @@ class Yht_Reviews_Public {
                     'offset'            => $start
                 )
             );
-		
+
             $count_query = new WP_Query(
                 array(
                     'post_type'         => 'yht-reviews',
@@ -199,11 +199,11 @@ class Yht_Reviews_Public {
             $three_stars_perc = 100 / $ratings_number * $three_stars;
             $two_stars_perc = 100 / $ratings_number * $two_stars;
             $one_star_perc = 100 / $ratings_number * $one_star;
-		
+
             // Settings:
             $yht_settings = get_option( 'yht_reviews_options' );
             extract( $yht_settings );
-            
+
             if ( !stristr( $yht_leave_review_url, 'http' ) && $yht_leave_review_url ) $yht_leave_review_url = 'http://' . $yht_leave_review_url;
             $yht_leave_review_url = $yht_leave_review_url ? $yht_leave_review_url : '#';
 
@@ -365,8 +365,6 @@ class Yht_Reviews_Public {
         }
 
 
-
-
         $html = '
         
         <div id="action_bar_cont">
@@ -399,77 +397,6 @@ class Yht_Reviews_Public {
         </div> 
         ';
 
-        $html .= '
-            <script>  
-                jQuery(document).ready( function(){
-                    
-                   // When the user scrolls the page, execute myFunction
-                    window.onscroll = function() { sticky_action_bar() };
-                    
-                    // Get the action_bar
-                    var action_bar = document.getElementById("action_bar");
-                    
-                    // Get the offset position of the action_bar
-                    var sticky = action_bar.offsetTop;
-                    
-                    // Add the sticky class to the action_bar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-                    function sticky_action_bar() {
-                      
-                      if ( window.pageYOffset <  sticky + 64  ) {
-                            action_bar.classList.remove("sticky");
-                          
-                      } else if (window.pageYOffset >= sticky + 120) {
-                            action_bar.classList.add("sticky");
-                            action_bar.classList.remove("fadeout");
-                            action_bar.classList.add("fadein");
-                      } else {
-                            action_bar.classList.remove("fadein");
-                            action_bar.classList.add("fadeout");
-                      } 
-                    }    
-                     
-                    if (jQuery("#action_bar").width() <= 752 ){
-                        jQuery("#action_bar").removeClass("m752 m944");
-                        jQuery("#action_bar").addClass("m752");
-                    } else if (jQuery("#action_bar").width() <= 944 ) {
-                        jQuery("#action_bar").removeClass("m752 m944");
-                        jQuery("#action_bar").addClass("m944");
-                    } else if (jQuery("#action_bar").width() > 944 ) {
-                        jQuery("#action_bar").removeClass("m752 m944");
-                    } 
-                    
-                    jQuery(window).resize(function(){
-                        
-                        if (jQuery("#action_bar").width() <= 752 ){
-                            jQuery("#action_bar").removeClass("m752 m944");
-                            jQuery("#action_bar").addClass("m752");
-                        } else if (jQuery("#action_bar").width() <= 944 ) {
-                            jQuery("#action_bar").removeClass("m752 m944");
-                            jQuery("#action_bar").addClass("m944");
-                        } else if (jQuery("#action_bar").width() > 944 ) {
-                            jQuery("#action_bar").removeClass("m752 m944");
-                        } 
-                        
-                    });
-                    
-                    jQuery(window).scroll(function(){
-                   
-                        if (jQuery("#action_bar").width() <= 752 ){
-                            jQuery("#action_bar").removeClass("m752 m944");
-                            jQuery("#action_bar").addClass("m752");
-                        } else if (jQuery("#action_bar").width() <= 944 ) {
-                            jQuery("#action_bar").removeClass("m752 m944");
-                            jQuery("#action_bar").addClass("m944");
-                        } else if (jQuery("#action_bar").width() > 944 ) {
-                            jQuery("#action_bar").removeClass("m752 m944");
-                        } 
-                        
-                    });
-                
-                });
-                                   
-                </script>
-        ';
         return $html;
     }
 
@@ -574,26 +501,26 @@ class Yht_Reviews_Public {
 
 
 
-	/**
-	 * Register the stylesheets for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_styles() {
+    /**
+     * Register the stylesheets for the public-facing side of the site.
+     *
+     * @since    1.0.0
+     */
+    public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/yht-reviews-public.css', array(), $this->version, 'all' );
+        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/yht-reviews-public.css', array(), $this->version, 'all' );
 
-	}
+    }
 
-	/**
-	 * Register the JavaScript for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts() {
+    /**
+     * Register the JavaScript for the public-facing side of the site.
+     *
+     * @since    1.0.0
+     */
+    public function enqueue_scripts() {
 
-		//wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/yht-reviews-public.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/yht-reviews-sticky.js', array( 'jquery' ), $this->version, true );
 
-	}
+    }
 
 }

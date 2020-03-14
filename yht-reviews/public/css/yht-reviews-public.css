@@ -4,6 +4,7 @@
  */
 
 
+
 /* Start default widget styles */
 
 .yht-reviews-container {
@@ -19,7 +20,7 @@
     font: inherit;
     font-size: 100%;
     vertical-align: baseline;
-	box-sizing: content-box;
+    box-sizing: content-box;
 }
 
 @media screen and (min-width: 1200px) and (min-width: 1300px) {
@@ -199,7 +200,7 @@
 #content-area .yht-reviews .overview .score-distribution table, #content-area .yht-reviews .overview .score-distribution table{
     width: 100%;
     margin-bottom: 0;
-	border: none;
+    border: none;
 }
 #content-area .yht-reviews .overview .score-distribution table td, .yht-reviews .overview .score-distribution table td{
     color: #6f767a;
@@ -333,7 +334,7 @@
     font: 16px Arial, sans-serif;
     line-height: 23px;
     color: rgb(38,38,38);
-	padding-bottom: 24px;
+    padding-bottom: 24px;
 }
 .yht-reviews .review-body h4{
     font-weight: 500;
@@ -456,12 +457,12 @@
     height: auto;
     fill: currentColor;
     font: normal 14px Roboto, Arial, sans-serif;
-	cursor: default;
-		
+    cursor: default;
+
 }
 .yht-reviews .navigation .pages .dots:hover {
-	background-color: inherit;
-	color: inherit;
+    background-color: inherit;
+    color: inherit;
 }
 
 .yht-reviews .navigation .vendor{
@@ -524,14 +525,14 @@
 }
 
 .yht-reviews .powered-by-text img {
-	width:100px;
-	padding-top:8px;
+    width:100px;
+    padding-top:8px;
 }
 
 .yht-reviews .logo>img {
-	width: 42px;
-	margin-top:8px;
-	margin-left:2px;
+    width: 42px;
+    margin-top:8px;
+    margin-left:2px;
 }
 
 /* End default widget styles */
@@ -540,47 +541,36 @@
 
 /* Start ribbon widget styles */
 
-/* Спрятать админбар */
-#wpadminbar {
-    display: none;
-}
-
 #action_bar_cont{
     font-size: 0;
     height: 49px;
 }
 
 #action_bar {
-    z-index: 9999;
     font-size: 0;
     line-height:0;
     background-color: #0168b0;
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*left: 0;*/
     color: #626262;
     display: block;
-
     width: 100%;
-
     overflow: hidden;
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
+#action_bar.sticky {
+    z-index: 9999;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: red;
+    border: none;
+    padding: 0;
 }
 
 #action_bar .container {
     width: 100%;
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    position: relative;
 }
 
 #action_bar .column {
@@ -632,6 +622,13 @@
     font-family: "Segoe UI","Helvetica Neue","Helvetica","Arial","sans-serif";
     font-size: 14px;
     margin: 0 16px 0 0;
+    line-height: 1.8;
+}
+
+#action_bar #tp-widget-rating strong {
+    color: #fff;
+    font-family: "Segoe UI","Helvetica Neue","Helvetica","Arial","sans-serif";
+    font-size: 14px;
 }
 
 #action_bar .tp-widget-stars {
@@ -645,6 +642,16 @@
 #action_bar #ribbon-logo {
     line-height: 0;
     width: 126px;
+    margin-top: 0;
+}
+
+#action_bar #ribbon-logo img {
+    line-height: 0;
+    width: 126px;
+    margin-top: 0;
+    max-width: 100%;
+    position: relative;
+    top: -1px;
 }
 
 /* #action_bar <= 944px */
@@ -690,31 +697,51 @@
 /* End ribbon widget styles */
 
 #action_bar {
-    /* - -Animation settings to be used -- */
-    -webkit-animation-duration: .8s;
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-iteration-count: .8;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+    animation-iteration-count: 1;
 }
 
 #action_bar.fadein.sticky {
-    animation-name: fadeIn;
-    transform: translateY(0);
+    animation-name: fade-In;
 }
 
 #action_bar.fadeout.sticky {
-    animation-name: fadeOut;
-    transform: translateY(-80px);
-
+    animation-name: fade-Out;
+    opacity: 0;
 }
 
-@-webkit-keyframes fadeIn {
-    0%      { opacity: .1; transform: translateY(-80px); }
-    100% { opacity: 1; transform: translateY(0); }
+@keyframes fade-In {
+    0% {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@-webkit-keyframes fadeOut {
-    0%      { opacity: 1; transform: translateY(0px); }
-    100% { opacity: .1; transform: translateY(-80px) }
+@keyframes fade-Out {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+}
+
+
+/* Спрятать бары */
+#wpadminbar {
+    display: none;
+}
+.scheme_default .top_panel_navi.state_fixed .menu_main_wrap {
+    display: none;
 }
 
 
