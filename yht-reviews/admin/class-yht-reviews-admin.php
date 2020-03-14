@@ -341,6 +341,13 @@ class Yht_Reviews_Admin {
         );
         add_settings_field( 'yht_ribbon_indent_field', 'Top Indent', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'ribbon_view_section', $yht_reviews_field_params );
 
+        $yht_reviews_field_params = array(
+            'type'      => 'checkbox',
+            'id'        => 'yht_only_sticky',
+            'desc'      => 'Enable only sticky view for ribbon.'
+        );
+        add_settings_field( 'yht_only_sticky', 'Only Sticky View', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'ribbon_view_section', $yht_reviews_field_params );
+
         // Create ribbon copy shortcode field
         $yht_reviews_field_params = array(
             'type'      => 'copy_shortcode_ribbon',
