@@ -152,11 +152,6 @@
                             <div class="review-body">
 
                                 <div class="feedback-content">
-                                    <div class="feedback-audio-wrapper" style="display: none;">
-                                        <audio id="audioplayer" class="video-js vjs-default-skin" controls="" width="310" height="60">
-                                            <source src="" type="audio/mp3">
-                                        </audio>
-                                    </div>
                                     <strong class="title"><?php if( $yht_display_title ) the_title(); ?></strong>
                                     <?php
                                     $yht_testimonial = get_post_meta( get_the_ID(), 'yht_testimonial', true );
@@ -280,10 +275,10 @@
 
                     <a class="vendor" href="https://www.trustspot.io/" rel="nofollow" target="_blank">
                     <span class="logo" >
-						<img src="https://yourhighesttruth.com/yoga-ayahuasca-retreats-peru/wp-content/uploads/2020/03/trustspot.jpg" >
+						<img src="<?php echo plugins_url()?>/yht-reviews/public/img/trustspot.jpg" >
                     </span>
                         <div class="powered-by-text">
-                            Powered by <br> <span><img src="https://yourhighesttruth.com/yoga-ayahuasca-retreats-peru/wp-content/uploads/2020/03/trustspot_logo_230.png"></span>
+                            Powered by <br> <span><img src="<?php echo plugins_url()?>/yht-reviews/public/img/trustspot_logo_230.png"></span>
                         </div>
                     </a>
                 </div>

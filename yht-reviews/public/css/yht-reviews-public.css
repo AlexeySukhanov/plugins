@@ -3,6 +3,9 @@
  * included in this file.
  */
 
+
+/* Start default widget styles */
+
 .yht-reviews-container {
     min-height: 565px;
     background: white;
@@ -18,7 +21,6 @@
     vertical-align: baseline;
 	box-sizing: content-box;
 }
-
 
 @media screen and (min-width: 1200px) and (min-width: 1300px) {
     .yht-reviews-container {
@@ -89,8 +91,6 @@
     stroke: #CCD5D9!important;
     fill-opacity: 1!important;
 }
-
-
 
 .yht-reviews .overview {
     display: -ms-flexbox;
@@ -533,3 +533,139 @@
 	margin-top:8px;
 	margin-left:2px;
 }
+
+/* End default widget styles */
+
+
+
+/* Start ribbon widget styles */
+
+/* Спрятать админбар */
+#wpadminbar {
+    display: none;
+}
+
+#action_bar {
+    z-index: 9999;
+    font-size: 0;
+    line-height:0;
+    background-color: #0168b0;
+    position: fixed;
+    color: #626262;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#action_bar .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#action_bar .column {
+    width: 98%;
+    margin: auto;
+}
+
+#action_bar .contact_details {
+    float: left;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#action_bar .contact_details li {
+    padding: 15px 0;
+    line-height: normal;
+    padding-left: 20px;
+    font-size: 16px;
+    display: inherit !important;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#action_bar .social_widetrust {
+    padding: 12px 0;
+    float: right;
+    display: flex;
+}
+#action_bar .social_widetrust li{
+    font-size: 10px;
+    list-style: none;
+}
+#action_bar #trust-score{
+    margin: 0 16px 0 0;
+    font-size: 20px;
+    line-height: 25px;
+    font-family: "Segoe UI","Helvetica Neue","Helvetica","Arial","sans-serif";
+    font-weight: 500;
+    color: #fff;
+}
+
+#action_bar .tp-star__canvas, #action_bar  .tp-star__canvas--half {
+    fill: #00b67a;
+}
+
+#action_bar #tp-widget-rating {
+    color: #fff;
+    font-family: "Segoe UI","Helvetica Neue","Helvetica","Arial","sans-serif";
+    font-size: 14px;
+    margin: 0 16px 0 0;
+}
+
+#action_bar .tp-widget-stars {
+    margin: 0 16px 0 0;
+}
+
+#action_bar .tp-logo__text {
+    fill: #fff;
+}
+
+#action_bar #ribbon-logo {
+    line-height: 0;
+    width: 126px;
+}
+
+@media all and (max-width: 1239px){
+    #action_bar .container {
+        max-width: 940px;
+    }
+}
+
+@media all and (max-width: 959px){
+    #action_bar .container {
+        max-width: 708px;
+    }
+    #action_bar #trust-score {
+        display: none;
+    }
+    #action_bar #tp-widget-rating {
+        display: none;
+    }
+}
+
+@media all and (max-width: 767px){
+    #action_bar .container {
+        max-width: 380px;
+    }
+    #action_bar .contact_details {
+        float: none;
+    }
+    #action_bar .contact_details li {
+        padding: 0;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    #action_bar .social_widetrust {
+        padding: 0;
+        margin-bottom: 22px;
+        float: none;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+}
+/* End ribbon widget styles */

@@ -276,6 +276,7 @@ class Yht_Reviews_Admin {
 
         // Add settings sections
         add_settings_section( 'default_view_section', 'Default View Settings', '', $this->yht_settings_page_addr );
+        add_settings_section( 'ribbon_view_section', 'Ribbon View Settings', '', $this->yht_settings_page_addr );
 
         // Create Leave Review Url text field
         $yht_reviews_field_params = array(
@@ -322,6 +323,30 @@ class Yht_Reviews_Admin {
             'desc'      => 'Click on the field to copy php to paste in theme templates.',
         );
         add_settings_field( 'yht_copy_php_field', 'Copy PHP Code', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'default_view_section', $yht_reviews_field_params );
+
+        // Create Leave Review ribbon text field
+        $yht_reviews_field_params = array(
+            'type'      => 'text', // тип
+            'id'        => 'yht_ribbon_text',
+            'desc'      => 'Leave ribbon description text here',
+        );
+        add_settings_field( 'yht_ribbon_text_field', 'Ribbon description', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'ribbon_view_section', $yht_reviews_field_params );
+
+        // Create ribbon copy shortcode field
+        $yht_reviews_field_params = array(
+            'type'      => 'copy_shortcode_ribbon',
+            'id'        => 'yht_copy_ribbon_short_code',
+            'desc'      => 'Click on the field to copy the ribbon shortcode to paste in pages and posts through the admin panel.',
+        );
+        add_settings_field( 'yht_copy_ribbon_short_code_field', 'Copy Ribbon Shortcode', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'ribbon_view_section', $yht_reviews_field_params );
+
+        // Create copy PHP field for templates
+        $yht_reviews_field_params = array(
+            'type'      => 'copy_php_ribbon',
+            'id'        => 'yht_copy_ribbon_php',
+            'desc'      => 'Click on the field to copy php to paste ribbon in theme templates.',
+        );
+        add_settings_field( 'yht_copy_php_ribbon_field', 'Copy PHP Ribbon Code', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'ribbon_view_section', $yht_reviews_field_params );
 
     }
 
@@ -380,6 +405,17 @@ class Yht_Reviews_Admin {
             case 'copy_php':
                 $o[$id] = esc_attr( stripslashes($o[$id]) );
                 $php_output = esc_html("echo do_shortcode( '[yht_reviews]' );");
+                echo "<input class='regular-text' type='text' id='$id' readonly='readonly' name='" . $option_name . "[$id]' value='$php_output' onclick='copy_on_click($id)' />";
+                echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";
+                break;
+            case 'copy_shortcode_ribbon':
+                $o[$id] = esc_attr( stripslashes($o[$id]) );
+                echo "<input class='regular-text' type='text' id='$id' readonly='readonly' name='" . $option_name . "[$id]' value='[yht_reviews_ribbon]' onclick='copy_on_click($id)' />";
+                echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";
+                break;
+            case 'copy_php_ribbon':
+                $o[$id] = esc_attr( stripslashes($o[$id]) );
+                $php_output = esc_html("echo do_shortcode( '[yht_reviews_ribbon]' );");
                 echo "<input class='regular-text' type='text' id='$id' readonly='readonly' name='" . $option_name . "[$id]' value='$php_output' onclick='copy_on_click($id)' />";
                 echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";
                 break;
