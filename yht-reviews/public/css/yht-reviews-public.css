@@ -545,17 +545,35 @@
     display: none;
 }
 
+#action_bar_cont{
+    font-size: 0;
+    height: 49px;
+}
+
 #action_bar {
     z-index: 9999;
     font-size: 0;
     line-height:0;
     background-color: #0168b0;
-    position: fixed;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
     color: #626262;
     display: block;
+
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    background-color: red;
 }
 
 #action_bar .container {
@@ -587,7 +605,8 @@
 }
 
 #action_bar .social_widetrust {
-    padding: 12px 0;
+    padding: 12px 0 8px;
+    padding-right: 20px;
     float: right;
     display: flex;
 }
@@ -628,44 +647,75 @@
     width: 126px;
 }
 
-@media all and (max-width: 1239px){
-    #action_bar .container {
-        max-width: 940px;
-    }
+/* #action_bar <= 944px */
+#action_bar.m944 .container {
+    max-width: 708px;
+}
+#action_bar.m944 #trust-score {
+    display: none;
+}
+#action_bar.m944 #tp-widget-rating {
+    display: none;
 }
 
-@media all and (max-width: 959px){
-    #action_bar .container {
-        max-width: 708px;
-    }
-    #action_bar #trust-score {
-        display: none;
-    }
-    #action_bar #tp-widget-rating {
-        display: none;
-    }
+/* #action_bar <= 752 */
+#action_bar.m752 .container {
+    max-width: 380px;
+}
+#action_bar.m752 .contact_details {
+    float: none;
+}
+#action_bar.m752 .contact_details li {
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+#action_bar.m752 .social_widetrust {
+    padding: 0;
+    margin-bottom: 22px;
+    float: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+#action_bar.m752 #trust-score {
+    display: none;
+}
+#action_bar.m752 #tp-widget-rating {
+    display: none;
 }
 
-@media all and (max-width: 767px){
-    #action_bar .container {
-        max-width: 380px;
-    }
-    #action_bar .contact_details {
-        float: none;
-    }
-    #action_bar .contact_details li {
-        padding: 0;
-        margin-top: 12px;
-        margin-bottom: 12px;
-        text-align: center;
-    }
-    #action_bar .social_widetrust {
-        padding: 0;
-        margin-bottom: 22px;
-        float: none;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-    }
-}
+
 /* End ribbon widget styles */
+
+#action_bar {
+    /* - -Animation settings to be used -- */
+    -webkit-animation-duration: .8s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: .8;
+}
+
+#action_bar.fadein.sticky {
+    animation-name: fadeIn;
+    transform: translateY(0);
+}
+
+#action_bar.fadeout.sticky {
+    animation-name: fadeOut;
+    transform: translateY(-80px);
+
+}
+
+@-webkit-keyframes fadeIn {
+    0%      { opacity: .1; transform: translateY(-80px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@-webkit-keyframes fadeOut {
+    0%      { opacity: 1; transform: translateY(0px); }
+    100% { opacity: .1; transform: translateY(-80px) }
+}
+
+
+
