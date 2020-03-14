@@ -58,3 +58,7 @@
 .yht-testimonial #wp-yht_testimonial-wrap {
     margin-top: -16px;
 }
+
+#yht_ribbon_indent {
+    width: 80px;
+}

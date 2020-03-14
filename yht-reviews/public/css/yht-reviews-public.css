@@ -735,14 +735,13 @@
     }
 }
 
-
 /* Спрятать бары */
-#wpadminbar {
-    display: none;
-}
-.scheme_default .top_panel_navi.state_fixed .menu_main_wrap {
-    display: none;
-}
+/*#wpadminbar {*/
+/*    display: none;*/
+/*}*/
+/*.scheme_default .top_panel_navi.state_fixed .menu_main_wrap {*/
+/*    display: none;*/
+/*}*/
 
 
 

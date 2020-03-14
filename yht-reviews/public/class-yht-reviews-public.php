@@ -365,10 +365,17 @@ class Yht_Reviews_Public {
         }
 
 
+        if( is_admin_bar_showing() && $yht_ribbon_indent ){
+            $yht_ribbon_indent += 32;
+        } elseif ( is_admin_bar_showing() ) {
+            $yht_ribbon_indent = 32;
+        }
+
         $html = '
-        
+
+        <style>' . $yht_custom_styles . '</style>
         <div id="action_bar_cont">
-        <div id="action_bar">
+        <div id="action_bar" style="top:' . $yht_ribbon_indent  .'px!important;">
             <div class="container">
                 <div class="column">
                     <ul class="contact_details">

@@ -271,16 +271,17 @@ class Yht_Reviews_Admin {
      */
     public function init_yht_reviews_settings() {
 
-        // Присваиваем функцию валидации ( true_validate_settings() ). Вы найдете её ниже
+        // Add validation function
         register_setting( 'yht_reviews_options', 'yht_reviews_options' );
 
         // Add settings sections
         add_settings_section( 'default_view_section', 'Default View Settings', '', $this->yht_settings_page_addr );
         add_settings_section( 'ribbon_view_section', 'Ribbon View Settings', '', $this->yht_settings_page_addr );
+        add_settings_section( 'custom_styles_section', 'Cuctom Styles Settings', '', $this->yht_settings_page_addr );
 
         // Create Leave Review Url text field
         $yht_reviews_field_params = array(
-            'type'      => 'text', // тип
+            'type'      => 'text',
             'id'        => 'yht_leave_review_url',
             'desc'      => 'URL in the text "Click here to leave a review →"',
         );
@@ -326,11 +327,19 @@ class Yht_Reviews_Admin {
 
         // Create Leave Review ribbon text field
         $yht_reviews_field_params = array(
-            'type'      => 'text', // тип
+            'type'      => 'text',
             'id'        => 'yht_ribbon_text',
             'desc'      => 'Leave ribbon description text here',
         );
         add_settings_field( 'yht_ribbon_text_field', 'Ribbon description', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'ribbon_view_section', $yht_reviews_field_params );
+
+        // Create top indent for sticky ribbon field
+        $yht_reviews_field_params = array(
+            'type'      => 'number',
+            'id'        => 'yht_ribbon_indent',
+            'desc'      => 'Enter top indent for sticky ribbon ( default: 0px )',
+        );
+        add_settings_field( 'yht_ribbon_indent_field', 'Top Indent', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'ribbon_view_section', $yht_reviews_field_params );
 
         // Create ribbon copy shortcode field
         $yht_reviews_field_params = array(
@@ -347,6 +356,14 @@ class Yht_Reviews_Admin {
             'desc'      => 'Click on the field to copy php to paste ribbon in theme templates.',
         );
         add_settings_field( 'yht_copy_php_ribbon_field', 'Copy PHP Ribbon Code', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'ribbon_view_section', $yht_reviews_field_params );
+
+        // Create top indent for sticky ribbon field
+        $yht_reviews_field_params = array(
+            'type'      => 'textarea',
+            'id'        => 'yht_custom_styles',
+            'desc'      => 'Enter your custom styles here',
+        );
+        add_settings_field( 'yht_yht_custom_styles_field', 'Custom Styles', array( $this, 'render_yht_reviews_settings' ), $this->yht_settings_page_addr, 'custom_styles_section', $yht_reviews_field_params );
 
     }
 
@@ -367,6 +384,11 @@ class Yht_Reviews_Admin {
             case 'text':
                 $o[$id] = esc_attr( stripslashes($o[$id]) );
                 echo "<input class='regular-text' type='text' id='$id' name='" . $option_name . "[$id]' value='$o[$id]' />";
+                echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";
+                break;
+            case 'number':
+                $o[$id] = esc_attr( stripslashes($o[$id]) );
+                echo "<input class='regular-number' type='number' id='$id' name='" . $option_name . "[$id]' value='$o[$id]' /> px";
                 echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";
                 break;
             case 'textarea':
