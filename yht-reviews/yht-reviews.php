@@ -3,7 +3,7 @@
  * YHT Reviews plugin
  *
  * @link              https://yourhighesttruth.com
- * @since             1.0.0
+ * @since             1.2.1
  * @package           Yht_Reviews
  *
  * @wordpress-plugin
