@@ -58,7 +58,6 @@ class Yht_Reviews_Public {
         add_action( 'wp_ajax_nopriv_render_yht_reviews_view', array( $this, 'render_yht_reviews_view' ) );
         // Creates shortcode for default YHT Reviews widget output
         add_shortcode( 'yht_reviews', array( $this, 'render_yht_default_shortcode' ) );
-
         // Creates shortcode for ribbon YHT Reviews widget output
         add_shortcode( 'yht_reviews_ribbon', array( $this, 'render_yht_ribbon_shortcode' ) );
     }
@@ -364,7 +363,7 @@ class Yht_Reviews_Public {
             $star_output .= '</svg>';
         }
 
-
+        // Fix admin bar indent
         if( is_admin_bar_showing() && $yht_ribbon_indent ){
             $yht_ribbon_indent += 32;
         } elseif ( is_admin_bar_showing() ) {
@@ -406,198 +405,21 @@ class Yht_Reviews_Public {
         </div> 
         ';
 
-
+        // Include yht_only_sticky mode CSS&JS
         if ( $yht_only_sticky ) {
 
-            $html .= '
-            <style>
-                #action_bar_cont{
-					position: fixed;
-					top: 0px;
-					height: 0;
-					overflow: hidden;
-					width: 100%;
-					z-index: 999999;
-                    
-                }
-                #action_bar {
-                    position: fixed;
-                    right: 0;
-                }
-
-            </style>
-			
-			<script>
-                jQuery(document).ready(function($) {
-                
-                        if (jQuery("#action_bar").width() <= 752 ){
-                            jQuery("#action_bar").removeClass("m752 m944");
-                            jQuery("#action_bar").addClass("m752");
-                        } else if (jQuery("#action_bar").width() <= 944 ) {
-                            jQuery("#action_bar").removeClass("m752 m944");
-                            jQuery("#action_bar").addClass("m944");
-                        } else if (jQuery("#action_bar").width() > 944 ) {
-                            jQuery("#action_bar").removeClass("m752 m944");
-                        }
-                
-                        jQuery(window).resize(function(){
-                            if (jQuery("#action_bar").width() <= 752 ){
-                                jQuery("#action_bar").removeClass("m752 m944");
-                                jQuery("#action_bar").addClass("m752");
-                            } else if (jQuery("#action_bar").width() <= 944 ) {
-                                jQuery("#action_bar").removeClass("m752 m944");
-                                jQuery("#action_bar").addClass("m944");
-                            } else if (jQuery("#action_bar").width() > 944 ) {
-                                jQuery("#action_bar").removeClass("m752 m944");
-                            }
-                        });
-                
-                        jQuery(window).scroll(function(){
-                            if (jQuery("#action_bar").width() <= 752 ){
-                                jQuery("#action_bar").removeClass("m752 m944");
-                                jQuery("#action_bar").addClass("m752");
-                            } else if (jQuery("#action_bar").width() <= 944 ) {
-                                jQuery("#action_bar").removeClass("m752 m944");
-                                jQuery("#action_bar").addClass("m944");
-                            } else if (jQuery("#action_bar").width() > 944 ) {
-                                jQuery("#action_bar").removeClass("m752 m944");
-                            }
-                        });
-                
-                });			
-
-			</script>
-            ';
-
+            // Include CSS if yht_only_sticky mode ON
+            $html .= '<style>' . file_get_contents( plugin_dir_url( __FILE__ ) .  'css/yht-reviews-only-sticky-bar.css' ) . '</style>';
+            // Include JS if yht_only_sticky mode ON
+            $html .= '<script>' . file_get_contents( plugin_dir_url( __FILE__ ) .  'js/yht-reviews-only-sticky-bar.js' ) . '</script>';
 
         } else {
 
+            // Include CSS if yht_only_sticky mode OFF
+            $html .= '<style>' . file_get_contents( plugin_dir_url( __FILE__ ) .  'css/yht-reviews-sticky-and-static-bar.css' ) . '</style>';
+            // Include JS if yht_only_sticky mode ON
+            $html .= '<script>' . file_get_contents( plugin_dir_url( __FILE__ ) .  'js/yht-reviews-sticky-and-static-bar.js' ) . '</script>';
 
-            $html .=  '
-            <style>
-                 @keyframes fade-In {
-                    0% {
-                        opacity: 0;
-                        transform: translateY(-80px);
-                    }
-                    100% {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
-                @keyframes fade-Out {
-                    0% {
-                        opacity: 1;
-                        transform: translateY(0px);
-                        transform: scale(1);
-                    }
-                    100% {
-                        opacity: 0;
-                        transform: translateY(-80px);
-                    }
-                }
-            
-                #action_bar {
-                    
-                    animation-duration: 1s;
-                    animation-timing-function: ease-in-out;
-                    animation-direction: normal;
-                    animation-iteration-count: 1;
-                }
-                
-                #action_bar.fadein.sticky {
-                    animation-name: fade-In;
-                }
-                
-                #action_bar.fadeout.sticky {
-                    animation-name: fade-Out;
-                    opacity: 0;
-                }        
-            </style>
-            
-            <script>	
-                jQuery(document).ready( function(){
-                    // When the user scrolls the page, execute myFunction
-                
-                
-                    // Get the action_bar
-                
-                
-                    // Get the offset position of the action_bar
-                    // var sticky = action_bar.offsetTop;
-                
-                    if ( jQuery("div").is("#action_bar") ) {
-                        
-                       window.onscroll = function() { sticky_action_bar() };
-                        
-                       var action_bar = document.getElementById("action_bar");
-                       var sticky = jQuery("#action_bar").offset();
-                        sticky = sticky.top;
-                        // Add the sticky class to the action_bar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-                        function sticky_action_bar() {
-                
-                            if ( window.pageYOffset <  sticky + 84  ) {
-                
-                                action_bar.classList.remove("sticky");
-                                action_bar.classList.remove("fadeout");
-                                if (jQuery("#action_bar").width() <= 752 ){
-                                    jQuery("#action_bar").removeClass("m752 m944");
-                                    jQuery("#action_bar").addClass("m752");
-                                } else if (jQuery("#action_bar").width() <= 944 ) {
-                                    jQuery("#action_bar").removeClass("m752 m944");
-                                    jQuery("#action_bar").addClass("m944");
-                                } else if (jQuery("#action_bar").width() > 944 ) {
-                                    jQuery("#action_bar").removeClass("m752 m944");
-                                }
-                            } else if (window.pageYOffset >= sticky + 180) {
-                                action_bar.classList.add("sticky");
-                                action_bar.classList.remove("fadeout");
-                                action_bar.classList.add("fadein");
-                            } else {
-                                action_bar.classList.remove("fadein");
-                                action_bar.classList.add("fadeout");
-                            }
-                        }
-                
-                        if (jQuery("#action_bar").width() <= 752 ){
-                            jQuery("#action_bar").removeClass("m752 m944");
-                            jQuery("#action_bar").addClass("m752");
-                        } else if (jQuery("#action_bar").width() <= 944 ) {
-                            jQuery("#action_bar").removeClass("m752 m944");
-                            jQuery("#action_bar").addClass("m944");
-                        } else if (jQuery("#action_bar").width() > 944 ) {
-                            jQuery("#action_bar").removeClass("m752 m944");
-                        }
-                
-                        jQuery(window).resize(function(){
-                            if (jQuery("#action_bar").width() <= 752 ){
-                                jQuery("#action_bar").removeClass("m752 m944");
-                                jQuery("#action_bar").addClass("m752");
-                            } else if (jQuery("#action_bar").width() <= 944 ) {
-                                jQuery("#action_bar").removeClass("m752 m944");
-                                jQuery("#action_bar").addClass("m944");
-                            } else if (jQuery("#action_bar").width() > 944 ) {
-                                jQuery("#action_bar").removeClass("m752 m944");
-                            }
-                        });
-                
-                        jQuery(window).scroll(function(){
-                            if (jQuery("#action_bar").width() <= 752 ){
-                                jQuery("#action_bar").removeClass("m752 m944");
-                                jQuery("#action_bar").addClass("m752");
-                            } else if (jQuery("#action_bar").width() <= 944 ) {
-                                jQuery("#action_bar").removeClass("m752 m944");
-                                jQuery("#action_bar").addClass("m944");
-                            } else if (jQuery("#action_bar").width() > 944 ) {
-                                jQuery("#action_bar").removeClass("m752 m944");
-                            }
-                        });
-                    }
-                 
-                });
-            </script>
-            ';
         }
 
         return $html;

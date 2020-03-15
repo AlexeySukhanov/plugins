@@ -3,14 +3,14 @@
  * YHT Reviews plugin
  *
  * @link              https://yourhighesttruth.com
- * @since             1.2.1
+ * @since             1.0.0
  * @package           Yht_Reviews
  *
  * @wordpress-plugin
  * Plugin Name:       YHT Reviews
  * Plugin URI:        https://yourhighesttruth.com
  * Description:       Allows to create a list of reviews and display it in two ways using shortcodes.
- * Version:           1.0.0
+ * Version:           1.2.2
  * Author:            yourhighesttruth.com
  * Author URI:        https://yourhighesttruth.com
  * License:           GPL-2.0+
