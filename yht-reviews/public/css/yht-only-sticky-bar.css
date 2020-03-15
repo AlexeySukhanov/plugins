@@ -1,0 +1,13 @@
+#action_bar_cont{
+    position: fixed;
+    top: 0px;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    z-index: 999999;
+
+}
+#action_bar {
+    position: fixed;
+    right: 0;
+}

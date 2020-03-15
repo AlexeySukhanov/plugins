@@ -302,7 +302,7 @@ class Yht_Reviews_Public {
                           <path class="tp-star__shape" d="M244.597022 19.711433l-26.3029 19.089218 3.837419-11.797827-10.047304-7.291391h12.418974l3.837418-11.798624 3.837418 11.798624h12.418975zm-16.255436 11.798642l7.183595-1.509576 2.862114 8.800152-10.045709-7.290576z" fill="#FFF"></path>
                         </g>
                 ';
-            } elseif ( $overall_rating_ceil == 4 ) {;
+            } elseif ( $overall_rating_ceil == 4 ) {
                 $star_output .= '
                         <g class="tp-star">
                           <path class="tp-star__canvas" fill="#000" d="M0 46.330002h46.375586V0H0z"></path>
@@ -395,7 +395,9 @@ class Yht_Reviews_Public {
                         '.$ratings_output.'
                         
                         <li id="ribbon-logo">
+							<a target="_blank" href="https://www.trustpilot.com" >
                             <img src="' . plugin_dir_url( __FILE__ ) .  'img/ts_whitebg.png">  
+							</a>
                         </li>
                     </ul>
                 </div>
@@ -405,13 +407,17 @@ class Yht_Reviews_Public {
         ';
 
 
-        if ($yht_only_sticky) {
-            echo '
+        if ( $yht_only_sticky ) {
+
+            $html .= '
             <style>
                 #action_bar_cont{
-                    position: absolute;
-                    top: 0;
-                    overflow:hidden;
+					position: fixed;
+					top: 0px;
+					height: 0;
+					overflow: hidden;
+					width: 100%;
+					z-index: 999999;
                     
                 }
                 #action_bar {
@@ -420,28 +426,56 @@ class Yht_Reviews_Public {
                 }
 
             </style>
+			
+			<script>
+                jQuery(document).ready(function($) {
+                
+                        if (jQuery("#action_bar").width() <= 752 ){
+                            jQuery("#action_bar").removeClass("m752 m944");
+                            jQuery("#action_bar").addClass("m752");
+                        } else if (jQuery("#action_bar").width() <= 944 ) {
+                            jQuery("#action_bar").removeClass("m752 m944");
+                            jQuery("#action_bar").addClass("m944");
+                        } else if (jQuery("#action_bar").width() > 944 ) {
+                            jQuery("#action_bar").removeClass("m752 m944");
+                        }
+                
+                        jQuery(window).resize(function(){
+                            if (jQuery("#action_bar").width() <= 752 ){
+                                jQuery("#action_bar").removeClass("m752 m944");
+                                jQuery("#action_bar").addClass("m752");
+                            } else if (jQuery("#action_bar").width() <= 944 ) {
+                                jQuery("#action_bar").removeClass("m752 m944");
+                                jQuery("#action_bar").addClass("m944");
+                            } else if (jQuery("#action_bar").width() > 944 ) {
+                                jQuery("#action_bar").removeClass("m752 m944");
+                            }
+                        });
+                
+                        jQuery(window).scroll(function(){
+                            if (jQuery("#action_bar").width() <= 752 ){
+                                jQuery("#action_bar").removeClass("m752 m944");
+                                jQuery("#action_bar").addClass("m752");
+                            } else if (jQuery("#action_bar").width() <= 944 ) {
+                                jQuery("#action_bar").removeClass("m752 m944");
+                                jQuery("#action_bar").addClass("m944");
+                            } else if (jQuery("#action_bar").width() > 944 ) {
+                                jQuery("#action_bar").removeClass("m752 m944");
+                            }
+                        });
+                
+                });			
+
+			</script>
             ';
+
+
         } else {
-            echo '
+
+
+            $html .=  '
             <style>
-                #action_bar {
-                    
-                    animation-duration: 1s;
-                    animation-timing-function: ease-in-out;
-                    animation-direction: normal;
-                    animation-iteration-count: 1;
-                }
-                
-                #action_bar.fadein.sticky {
-                    animation-name: fade-In;
-                }
-                
-                #action_bar.fadeout.sticky {
-                    animation-name: fade-Out;
-                    opacity: 0;
-                }
-                
-                @keyframes fade-In {
+                 @keyframes fade-In {
                     0% {
                         opacity: 0;
                         transform: translateY(-80px);
@@ -463,17 +497,110 @@ class Yht_Reviews_Public {
                         transform: translateY(-80px);
                     }
                 }
+            
+                #action_bar {
+                    
+                    animation-duration: 1s;
+                    animation-timing-function: ease-in-out;
+                    animation-direction: normal;
+                    animation-iteration-count: 1;
+                }
                 
+                #action_bar.fadein.sticky {
+                    animation-name: fade-In;
+                }
+                
+                #action_bar.fadeout.sticky {
+                    animation-name: fade-Out;
+                    opacity: 0;
+                }        
             </style>
+            
+            <script>	
+                jQuery(document).ready( function(){
+                    // When the user scrolls the page, execute myFunction
+                
+                
+                    // Get the action_bar
+                
+                
+                    // Get the offset position of the action_bar
+                    // var sticky = action_bar.offsetTop;
+                
+                    if ( jQuery("div").is("#action_bar") ) {
+                        
+                       window.onscroll = function() { sticky_action_bar() };
+                        
+                       var action_bar = document.getElementById("action_bar");
+                       var sticky = jQuery("#action_bar").offset();
+                        sticky = sticky.top;
+                        // Add the sticky class to the action_bar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+                        function sticky_action_bar() {
+                
+                            if ( window.pageYOffset <  sticky + 84  ) {
+                
+                                action_bar.classList.remove("sticky");
+                                action_bar.classList.remove("fadeout");
+                                if (jQuery("#action_bar").width() <= 752 ){
+                                    jQuery("#action_bar").removeClass("m752 m944");
+                                    jQuery("#action_bar").addClass("m752");
+                                } else if (jQuery("#action_bar").width() <= 944 ) {
+                                    jQuery("#action_bar").removeClass("m752 m944");
+                                    jQuery("#action_bar").addClass("m944");
+                                } else if (jQuery("#action_bar").width() > 944 ) {
+                                    jQuery("#action_bar").removeClass("m752 m944");
+                                }
+                            } else if (window.pageYOffset >= sticky + 180) {
+                                action_bar.classList.add("sticky");
+                                action_bar.classList.remove("fadeout");
+                                action_bar.classList.add("fadein");
+                            } else {
+                                action_bar.classList.remove("fadein");
+                                action_bar.classList.add("fadeout");
+                            }
+                        }
+                
+                        if (jQuery("#action_bar").width() <= 752 ){
+                            jQuery("#action_bar").removeClass("m752 m944");
+                            jQuery("#action_bar").addClass("m752");
+                        } else if (jQuery("#action_bar").width() <= 944 ) {
+                            jQuery("#action_bar").removeClass("m752 m944");
+                            jQuery("#action_bar").addClass("m944");
+                        } else if (jQuery("#action_bar").width() > 944 ) {
+                            jQuery("#action_bar").removeClass("m752 m944");
+                        }
+                
+                        jQuery(window).resize(function(){
+                            if (jQuery("#action_bar").width() <= 752 ){
+                                jQuery("#action_bar").removeClass("m752 m944");
+                                jQuery("#action_bar").addClass("m752");
+                            } else if (jQuery("#action_bar").width() <= 944 ) {
+                                jQuery("#action_bar").removeClass("m752 m944");
+                                jQuery("#action_bar").addClass("m944");
+                            } else if (jQuery("#action_bar").width() > 944 ) {
+                                jQuery("#action_bar").removeClass("m752 m944");
+                            }
+                        });
+                
+                        jQuery(window).scroll(function(){
+                            if (jQuery("#action_bar").width() <= 752 ){
+                                jQuery("#action_bar").removeClass("m752 m944");
+                                jQuery("#action_bar").addClass("m752");
+                            } else if (jQuery("#action_bar").width() <= 944 ) {
+                                jQuery("#action_bar").removeClass("m752 m944");
+                                jQuery("#action_bar").addClass("m944");
+                            } else if (jQuery("#action_bar").width() > 944 ) {
+                                jQuery("#action_bar").removeClass("m752 m944");
+                            }
+                        });
+                    }
+                 
+                });
+            </script>
             ';
         }
 
-
-
         return $html;
-
-
-
     }
 
     /**
@@ -574,8 +701,6 @@ class Yht_Reviews_Public {
         exit();
 
     }
-
-
 
     /**
      * Register the stylesheets for the public-facing side of the site.

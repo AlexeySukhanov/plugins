@@ -571,6 +571,7 @@
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
+	padding-top: 0 !important;
 }
 
 #action_bar .column {
@@ -595,7 +596,7 @@
 }
 
 #action_bar .social_widetrust {
-    padding: 12px 0 8px;
+    padding: 14px 0 8px;
     padding-right: 20px;
     float: right;
     display: flex;
